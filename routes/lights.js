@@ -13,9 +13,10 @@ function setCurrentDate(lightMessage) {
 function validateBodyData(req) {
 	return {
 		username: req.body.username,
-		sequence: req.body.sequence,
-		name: req.body.name,
-		date: req.body.date 
+		message: req.body.message,
+		frames: req.body.frames,
+		size_x: req.body.size_x || 0,
+		size_y: req.body.size_y  || 0
 	}
 }
 

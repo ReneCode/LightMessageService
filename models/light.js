@@ -8,7 +8,10 @@ var LightSchema = new Schema( {
 	username: String,
 	name: String,
 	date: { type: Date, default: Date.now },
-	sequence: Object
+	size_x: Number,
+	size_y: Number,
+	frames: [ {} ]
+	// frames: { type: Array, default: [] }
 })
 
 let Light = mongoose.model('Light', LightSchema)
