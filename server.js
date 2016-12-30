@@ -52,7 +52,13 @@ if (connection_string.indexOf('?') >= 0) {
 } else {
   connection_string = connection_string + '/' + mongodb_database
 } 
-mongoose.connect(connection_string) // add password
+mongoose.connect(connection_string, function(err) {
+  if (err) {
+    console.log('### cant connect mongo. server will be closed');
+    server.close();
+  }
+})
+
 
 
 app.use(express.static(path.join(__dirname, 'public')));
