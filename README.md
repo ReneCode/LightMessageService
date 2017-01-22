@@ -20,3 +20,14 @@ example for mongod.cfg
     storage:
         dbPath: /mongo/data
         directoryPerDb: true
+
+
+-----
+
+docker -P
+    ports automatisch veröffentlichen
+docker port <id>
+    verwendete ports anzeigen
+
+
+.dockerignore
