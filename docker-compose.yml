@@ -4,7 +4,7 @@ services:
     mongodb:
         image: mongo
         volumes: 
-            - ./db:/data/db
+            - ./mongodb:/data/db
         ports:
             - 27017:27017          
 
@@ -26,7 +26,8 @@ services:
             - mongodb
         environment: 
             - PORT=3000
-            - MONGODB_CONNECT=mongodb://mongodb:27017
+            - MONGODB_HOST=mongodb
+            - MONGODB_PORT=27017
             - MONGODB_DATABASE=lightmessage
 
 

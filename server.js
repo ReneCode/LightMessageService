@@ -44,22 +44,33 @@ passport.deserializeUser(Account.deserializeUser())
 
 // mongoose
 mongoose.Promise = global.Promise;
-let mongodb_connect = process.env.MONGODB_CONNECT || 'mongodb://localhost:27017'
+
+
+/* 
+  mongo connectionString
+    mongodb://<user>:<password>@<host>:<port>/<database>
+*/
+
+let mongodb_host = process.env.MONGODB_HOST || 'localhost'
+let mongodb_port = process.env.MONGODB_PORT || '27017'
 let mongodb_database = process.env.MONGODB_DATABASE || 'lightmessage'
-let connection_string = mongodb_connect;
-if (connection_string.indexOf('?') >= 0) {
-  connection_string = connection_string.replace('?', mongodb_database + '?')
-} else {
-  connection_string = connection_string + '/' + mongodb_database
-} 
+
+let mongodb_user = process.env.MONGODB_USER || ''
+let mongodb_password = process.env.MONGODB_PASSWORD || ''
+
+let connection_string =  mongodb_host + ":" + mongodb_port
+if (mongodb_user) {
+  connection_string = mongodb_user + ":" + mongodb_password + "@" + connection_string;
+}
+
+connection_string = 'mongodb://' + connection_string + "/" + mongodb_database
+
 mongoose.connect(connection_string, function(err) {
   if (err) {
-    console.log('### cant connect mongo. server will be closed');
+    console.log('### cant connect mongo. server will be closed', err);
     server.close();
   }
 })
-
-
 
 app.use(express.static(path.join(__dirname, 'public')));
 
