@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// passport
 app.use(require('express-session')( {
   secret: 'mySecret',
   resave: false,
