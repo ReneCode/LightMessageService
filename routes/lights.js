@@ -32,11 +32,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/latest', (req, res) => {
-	console.log('get latest');
 	Light.findOne({}).sort({date:-1}).exec( (err, data) => {
 		if (err) {
 			res.send(err);
 		} else {
+			console.log('get latest:', data);
 			res.send(data);
 		}		
 	})
